@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171222">
+<title>6 Months ♡ Our Little Story</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:"Courier New",monospace;background:#171222;color:#3d2935}
+button{font:inherit;cursor:pointer}
+#app{position:fixed;inset:0;overflow:hidden;background:#171222}
+.scene{position:absolute;inset:0;display:none;opacity:0}
+.scene.active{display:block;animation:sceneIn .8s ease forwards}
+@keyframes sceneIn{from{opacity:0;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
+.scanlines{position:absolute;inset:0;pointer-events:none;z-index:100;opacity:.08;background:repeating-linear-gradient(0deg,#000 0 1px,transparent 1px 4px)}
+.vignette{position:absolute;inset:0;pointer-events:none;z-index:90;background:radial-gradient(circle,transparent 45%,rgba(22,13,26,.45) 100%)}
+.pixelText{text-shadow:3px 3px 0 #fff}
+.spark{position:absolute;font-size:16px;animation:spark 2.2s ease-in-out infinite}
+@keyframes spark{50%{transform:translateY(-10px) scale(1.2);opacity:.5}}
+
+.sky{position:absolute;inset:0;background:linear-gradient(#f7c7dc 0%,#ffdce8 55%,#efaa8e 100%)}
+.moon{position:absolute;right:12%;top:9%;width:54px;height:54px;border-radius:50%;background:#fff4ce;box-shadow:0 0 0 6px rgba(255,255,255,.16),0 0 30px #fff}
+.cloud{position:absolute;width:100px;height:28px;background:#fff8fb;border:4px solid #c77e99;box-shadow:8px 8px 0 #e2a9ba}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff8fb;border:4px solid #c77e99;border-bottom:0}
+.cloud:before{width:31px;height:30px;left:15px;top:-23px}
+.cloud:after{width:23px;height:23px;right:13px;top:-17px}
+.c1{top:18%;left:7%;animation:cloud 8s linear infinite}.c2{top:31%;right:5%;transform:scale(.72);animation:cloud 11s linear infinite reverse}
+@keyframes cloud{50%{margin-left:35px}}
+
+.introTitle{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:90%;text-align:center;color:#70445a;font-size:clamp(17px,4.5vw,27px);line-height:1.5}
+.introTitle b{color:#bd5b7e}
+.pov{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);width:min(370px,90vw);height:205px}
+.arm{position:absolute;bottom:0;width:98px;height:165px;background:#e6a178;border:6px solid #593e46;border-radius:25px}
+.arm.l{left:5px;transform:rotate(14deg)}.arm.r{right:5px;transform:rotate(-14deg)}
+.hand{position:absolute;bottom:126px;width:47px;height:53px;background:#efb083;border:6px solid #593e46;border-radius:13px}
+.hand.l{left:47px}.hand.r{right:47px}
+.tutorial{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:#fff9ed;border:4px solid #573c47;box-shadow:5px 5px #bd6c88;padding:9px 13px;text-align:center;font-size:11px;z-index:10;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{transform:translateX(-50%) translateY(-4px)}}
+
+.ground{position:absolute;bottom:0;left:0;right:0;height:38%;background:#d58c70;border-top:8px solid #87515a}
+.ground:after{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 47%,rgba(111,66,65,.18) 48% 52%,transparent 53%) 0 0/36px 36px,linear-gradient(-45deg,transparent 47%,rgba(111,66,65,.18) 48% 52%,transparent 53%) 0 0/36px 36px}
+.dog{position:absolute;left:50%;bottom:18%;width:190px;height:190px;transform:translateX(-50%);z-index:10;animation:dogIdle .8s steps(2) infinite}
+@keyframes dogIdle{50%{transform:translateX(-50%) translateY(-5px)}}
+.dog .body{position:absolute;left:43px;bottom:5px;width:105px;height:83px;background:#c9854f;border:6px solid #513a3d;border-radius:35px 35px 18px 18px}
+.dog .head{position:absolute;left:43px;top:29px;width:104px;height:90px;background:#d9985c;border:6px solid #513a3d;border-radius:45% 48% 42% 42%}
+.ear{position:absolute;top:28px;width:39px;height:57px;background:#86513d;border:6px solid #513a3d;border-radius:18px}.el{left:24px;transform:rotate(20deg)}.er{right:24px;transform:rotate(-20deg)}
+.eye{position:absolute;top:63px;width:9px;height:9px;background:#2d2228}.eye.l{left:72px}.eye.r{left:109px}
+.muzzle{position:absolute;top:78px;left:78px;width:39px;height:25px;background:#f2bd88;border:4px solid #513a3d;border-radius:50%}
+.nose{position:absolute;top:80px;left:93px;width:10px;height:8px;background:#2d2228}
+.leg{position:absolute;bottom:-5px;width:23px;height:52px;background:#c9854f;border:6px solid #513a3d}.leg.l{left:53px}.leg.r{right:53px}
+.tail{position:absolute;right:18px;bottom:43px;width:48px;height:20px;border:7px solid #513a3d;border-left:0;border-radius:0 30px 30px 0;transform:rotate(-28deg);transform-origin:left center;animation:tail .35s steps(2) infinite}
+@keyframes tail{50%{transform:rotate(15deg)}}
+.note{position:absolute;left:50%;top:-1px;transform:translateX(-50%) rotate(-4deg);width:116px;height:78px;background:#fffdf1;border:5px solid #583d46;box-shadow:6px 6px #bd6d89;z-index:20;font-size:10px;color:#70445a}
+.note:after{content:"♡";position:absolute;right:6px;bottom:2px;color:#df5f91;font-size:18px}
+.running{animation:run .9s steps(5) infinite}
+@keyframes run{25%{transform:translateX(calc(-50% - 24px)) translateY(-6px)}50%{transform:translateX(-50%)}75%{transform:translateX(calc(-50% + 24px)) translateY(-6px)}}
+
+.sceneCaption{position:absolute;left:50%;top:7%;transform:translateX(-50%);width:90%;text-align:center;color:#70445a;font-size:clamp(15px,4vw,23px);line-height:1.5;z-index:5}
+.room{position:absolute;inset:0;background:linear-gradient(#ffe7ef 0 68%,#b96f70 68%)}
+.wallline{position:absolute;top:68%;left:0;right:0;height:8px;background:#73434d}
+.window{position:absolute;left:8%;top:13%;width:95px;height:85px;background:#b8ddf2;border:7px solid #69434d;box-shadow:inset 0 0 0 5px #f8d6e3}
+.window:before{content:"";position:absolute;left:43%;top:0;bottom:0;border-left:5px solid #69434d}.window:after{content:"";position:absolute;top:43%;left:0;right:0;border-top:5px solid #69434d}
+.star{position:absolute;color:#fff4ce;font-size:13px}
+.table{position:absolute;left:50%;top:59%;transform:translate(-50%,-50%);width:min(380px,78vw);height:98px;background:#a85f43;border:7px solid #5f3c3d;box-shadow:0 14px #704142}
+.table:after{content:"";position:absolute;left:25px;right:25px;bottom:-122px;height:120px;background:linear-gradient(90deg,#70423e 0 27px,transparent 27px calc(100% - 27px),#70423e calc(100% - 27px));border-left:5px solid #55383b;border-right:5px solid #55383b}
+.cake{position:absolute;left:50%;top:-71px;transform:translateX(-50%);width:116px;height:61px;background:#ffd4df;border:5px solid #5d3c46;border-radius:9px;box-shadow:inset 0 -17px #f2a2bb}
+.cake:before{content:"6";position:absolute;inset:0;display:grid;place-items:center;font-size:32px;font-weight:bold;color:#b75679}
+.candle{position:absolute;left:48%;top:-48px;width:10px;height:38px;background:#fff;border:4px solid #5d3c46}
+.flame{position:absolute;left:-7px;top:-25px;color:#ffbf4e;font-size:22px;animation:flame .25s steps(2) infinite}
+@keyframes flame{50%{transform:scale(.75) rotate(3deg)}}
+.tableNote{position:absolute;right:-31px;top:36px;width:130px;padding:12px 7px;background:#fffce9;border:4px solid #5b4048;box-shadow:5px 5px #ca7895;transform:rotate(6deg);z-index:5;font-size:10px;color:#75495d}
+.tableNote:hover{transform:rotate(2deg) scale(1.05)}
+.person{position:absolute;left:11%;bottom:24%;width:90px;height:180px;animation:walk .8s steps(2) infinite}
+.person .head{position:absolute;top:0;left:18px;width:56px;height:56px;background:#d89a77;border:5px solid #543b43;border-radius:50%}
+.hair{position:absolute;top:-6px;left:15px;width:63px;height:29px;background:#42313a;border:5px solid #543b43;border-radius:50% 50% 20% 20%;z-index:2}
+.torso{position:absolute;top:54px;left:10px;width:70px;height:93px;background:#758daf;border:5px solid #543b43}
+.pLeg{position:absolute;top:142px;width:19px;height:45px;background:#3d405c;border:5px solid #543b43}.pl{left:19px}.pr{left:53px}
+@keyframes walk{50%{transform:translateY(-3px)}}
+
+.overlay{position:absolute;inset:0;background:rgba(31,19,29,.38);z-index:20;display:flex;align-items:center;justify-content:center}
+.card{width:min(470px,91vw);max-height:88vh;overflow:auto;background:#fff9ed;border:6px solid #5b3e48;box-shadow:10px 10px #b96a87;padding:23px 20px;text-align:center;animation:cardIn .5s ease}
+@keyframes cardIn{from{transform:translateY(20px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+.card h2{margin:0 0 15px;color:#9c4f70;font-size:21px}.card p{font-size:12px;line-height:1.65}
+.q{padding:11px 0;border-top:2px dashed #dfafbf;text-align:left;font-size:12px;line-height:1.5}.q b{display:block;color:#8f4b69;margin-bottom:3px}
+.btnrow{display:flex;gap:12px;justify-content:center;margin-top:17px;flex-wrap:wrap}
+.btn{border:4px solid #603f4b;background:#ff8db4;color:#fff;padding:11px 19px;box-shadow:4px 4px #9d5872;font-weight:bold}
+.btn.white{background:#fff;color:#754b5d}
+#noBtn{transition:left .12s,top .12s}
+
+.music{position:absolute;inset:0;background:linear-gradient(#f9cfdf,#fff0d6);display:flex;align-items:center;justify-content:center}
+.music .card{text-align:center}
+.choice{display:block;width:100%;margin:11px 0;padding:15px 14px;background:#ffe0eb;border:4px solid #704554;box-shadow:5px 5px #bf6e8b;text-align:left;color:#513943}
+.choice b{font-size:14px}.choice small{display:block;margin-top:4px;line-height:1.4;opacity:.75}
+.choice:hover{transform:translate(-2px,-2px);box-shadow:7px 7px #bf6e8b}
+
+#final{background:#19131e}
+.media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.finalShade{position:absolute;inset:0;background:linear-gradient(rgba(30,19,28,.12),rgba(25,15,25,.9));z-index:2}
+.letter{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(700px,92vw);max-height:82vh;overflow:auto;background:#fff9ed;border:6px solid #5c4049;box-shadow:12px 12px #b96b87;padding:25px 24px}
+.letter h1{text-align:center;color:#a04e70;font-size:23px;margin:0}.date{text-align:center;color:#98697b;font-size:10px;margin:6px 0 19px}
+.letter p{font-family:Georgia,serif;font-size:15px;line-height:1.78;color:#513d45;margin:13px 0}
+.letter .sign{text-align:right;font-style:italic;color:#a04e70}
+.musicStatus{position:fixed;left:10px;bottom:10px;z-index:8;background:rgba(0,0,0,.55);color:white;padding:6px 8px;font-size:9px}
+.heart{position:absolute;z-index:3;color:#ff8eb5;font-size:18px;animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-40px) rotate(0);opacity:0}15%{opacity:1}to{transform:translateY(110vh) rotate(360deg);opacity:.2}}
+.finalBadge{position:absolute;z-index:6;top:16px;left:50%;transform:translateX(-50%);color:white;background:rgba(0,0,0,.4);padding:7px 11px;font-size:9px;border:1px solid rgba(255,255,255,.3)}
+.hidden{display:none!important}
+@media(max-height:650px){.dog{bottom:11%;transform:translateX(-50%) scale(.78)}.table{top:54%}.person{bottom:16%;transform:scale(.75)}.letter{max-height:88vh;padding:17px}.letter p{font-size:13px;line-height:1.6}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section id="intro" class="scene active">
+ <div class="sky"></div><div class="moon"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+ <span class="spark" style="left:23%;top:30%">✦</span><span class="spark" style="right:23%;top:39%">♡</span>
+ <div class="introTitle pixelText">I made something small for you...<br><b>because six months with you<br>deserves more than a simple message. ♡</b></div>
+ <div class="pov"><div class="arm l"></div><div class="arm r"></div><div class="hand l"></div><div class="hand r"></div></div>
+ <div class="tutorial">WAIT... LOOK OVER THERE 👀<br><small>Someone has a message for you.</small></div>
+</section>
+
+<section id="dogScene" class="scene">
+ <div class="sky"></div><div class="ground"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+ <div class="sceneCaption pixelText">A little messenger came running... ♡</div>
+ <div class="dog" id="dog">
+  <div class="tail"></div><div class="ear el"></div><div class="ear er"></div><div class="head"></div>
+  <div class="eye l"></div><div class="eye r"></div><div class="muzzle"></div><div class="nose"></div>
+  <div class="body"></div><div class="leg l"></div><div class="leg r"></div>
+  <button class="note" id="dogNote">HEY!<br>THIS IS<br>FOR YOU ♡<br><b>CLICK</b></button>
+ </div>
+ <div class="tutorial">CLICK THE PAPER 🐶</div>
+</section>
+
+<section id="roomScene" class="scene">
+ <div class="room"><div class="wallline"></div></div>
+ <div class="window"><span class="star" style="left:15px;top:12px">✦</span><span class="star" style="right:15px;top:30px">✦</span></div>
+ <div class="sceneCaption pixelText">I walked over to our little table...<br>because there is one more thing.</div>
+ <div class="person"><div class="hair"></div><div class="head"></div><div class="torso"></div><div class="pLeg pl"></div><div class="pLeg pr"></div></div>
+ <div class="table">
+  <div class="cake"><div class="candle"><span class="flame">♥</span></div></div>
+  <button class="tableNote" id="tableNote">SIX MONTHS<br>DESERVE A LETTER<br>♡<br><b>OPEN ME</b></button>
+ </div>
+</section>
+
+<section id="questions" class="scene">
+ <div class="overlay"><div class="card">
+  <h2>Before you get the letter... ♡</h2>
+  <p>I need three honest answers. No pressure... okay, maybe a tiny bit. 😭</p>
+  <div class="q"><b>Are you happy with me?</b>Even with my kulit, tampo, overthinking, and pagiging toxic sometimes?</div>
+  <div class="q"><b>Will you stay with me?</b>Not only when everything is easy, but also when things get messy?</div>
+  <div class="q"><b>Thankful ka ba na nakilala mo ako?</b>Because I am really, really thankful that I met you.</div>
+  <div class="btnrow"><button class="btn" id="yes">YES ♡</button><button class="btn white" id="no">NO</button></div>
+ </div></div>
+</section>
+
+<section id="music" class="scene">
+ <div class="music"><div class="card">
+  <h2>Choose the soundtrack 🎵</h2>
+  <p>Pick what you want playing while my letter appears.</p>
+  <button class="choice" id="mine"><b>♡ My song</b><small>“Sorry... eto lang ang nakayanan ng boses ko.”</small></button>
+  <button class="choice" id="ours"><b>♡ Our theme song</b><small>Your uploaded video becomes the moving background.</small></button>
+ </div></div>
+</section>
+
+<section id="final" class="scene">
+ <video id="video" class="media hidden" loop playsinline></video>
+ <audio id="audio" class="media hidden" loop></audio>
+ <div class="finalShade"></div><div id="hearts"></div>
+ <div class="finalBadge">6 MONTHS OF US ♡</div>
+ <article class="letter">
+  <h1>For the person I love ♡</h1>
+  <div class="date">Six months down. Hopefully, many more to go.</div>
+  <p>Thank you for staying with me for these six months.</p>
+  <p>Hindi ko man laging nasasabi nang maayos, pero sobrang thankful ako na dumating ka sa buhay ko. Thank you sa pag-intindi, sa pag-stay, sa mga tawanan, sa random moments, at kahit sa mga araw na hindi tayo okay.</p>
+  <p>Alam kong hindi ako perfect. Minsan toxic ako, mabilis magtampo, makulit, overthinker, at kapag nagmamahal ako, <b>grabe ako magmahal.</b> May mga pagkakataon na baka nakakapagod ako. May times na hindi ko alam kung paano sabihin nang tama yung nararamdaman ko.</p>
+  <p>Pero I want you to know that I'm trying. I'm trying to understand you better. I'm trying to control the things that can hurt you. And I'm trying to become the kind of person who can love you without making love feel heavy.</p>
+  <p>Thank you for staying even when I'm not the easiest person to handle. Thank you for choosing to understand me. Thank you for giving me reasons to smile, and thank you for becoming one of the people I never want to lose.</p>
+  <p>Six months may sound short to other people, but for me, ang dami na nating memories. And I don't want the story to end here.</p>
+  <p><b>Sana magtuloy-tuloy pa tayo.</b> Sana marami pa tayong months, birthdays, random conversations, tampuhan na naaayos, tawanan, late-night talks, at ordinary days na nagiging special simply because we're together.</p>
+  <p>If ever I become too much, please remember this: behind all my kulit, tampo, and pagiging toxic sometimes is someone who genuinely loves you and is still learning how to love you better.</p>
+  <p>So thank you. Thank you for staying. Thank you for knowing me. Thank you for loving me.</p>
+  <p><b>Happy 6 months to us. ♡</b><br>Here's to more memories, more chances, more growth, and hopefully a much longer story together.</p>
+  <p class="sign">I love you.<br>And I'll keep trying to love you better.<br><br>— Yours, always ♡</p>
+ </article>
+ <div id="status" class="musicStatus"></div>
+</section>
+
+<div class="scanlines"></div><div class="vignette"></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+function go(id){document.querySelectorAll('.scene').forEach(x=>x.classList.remove('active'));$(id).classList.add('active')}
+setTimeout(()=>go('#dogScene'),2300);
+
+$('#dogNote').onclick=()=>{
+ $('#dog').classList.add('running');
+ $('#dogNote').innerHTML='YAY!<br>♡';
+ setTimeout(()=>go('#roomScene'),1900);
+};
+$('#tableNote').onclick=()=>go('#questions');
+
+let dodges=0;
+function dodge(){
+ dodges++;
+ const b=$('#no');
+ b.style.position='fixed';
+ b.style.zIndex=50;
+ b.style.left=(5+Math.random()*78)+'vw';
+ b.style.top=(10+Math.random()*75)+'vh';
+ b.textContent=dodges>3?'TRY AGAIN 😭':'NO';
+ if(dodges===6){b.textContent='FINE... ♡';b.style.left='50%';b.style.top='86%'}
+}
+$('#no').onmouseenter=dodge;
+$('#no').ontouchstart=e=>{e.preventDefault();dodge()};
+$('#no').onclick=dodge;
+$('#yes').onclick=()=>go('#music');
+
+function finish(type){
+ go('#final');
+ for(let i=0;i<42;i++){
+  let h=document.createElement('span');h.className='heart';
+  h.textContent=['♡','♥','✦','·'][i%4];
+  h.style.left=Math.random()*100+'%';
+  h.style.animationDelay=(-Math.random()*7)+'s';
+  h.style.animationDuration=(4+Math.random()*6)+'s';
+  h.style.fontSize=(12+Math.random()*15)+'px';
+  $('#hearts').appendChild(h);
+ }
+ if(type==='mine'){
+  $('#audio').src='assets/my-song.mp3';$('#audio').classList.remove('hidden');
+  $('#audio').play().catch(()=>{});
+  $('#status').textContent='♪ My song — “Sorry... eto lang ang nakayanan ng boses ko.”';
+ }else{
+  $('#video').src='assets/our-theme.mp4';$('#video').classList.remove('hidden');
+  $('#video').play().catch(()=>{});
+  $('#status').textContent='♪ Our theme song';
+ }
+}
+$('#mine').onclick=()=>finish('mine');
+$('#ours').onclick=()=>finish('ours');
+</script>
+</body>
+</html>
